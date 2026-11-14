@@ -31,17 +31,27 @@ public class MainActivity extends Activity {
         // 2. 亮度拉到最高：所有像素满亮度发光
         WindowManager.LayoutParams params = window.getAttributes();
         params.screenBrightness = 1f;
+
+        // 3. 让白色铺进刘海/挖孔区域（否则 cutout 那块会被系统涂成黑色）
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            params.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            params.layoutInDisplayCutoutMode =
+                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_ALWAYS;
+        }
         window.setAttributes(params);
 
-        // 3. 一个纯白 View 铺满全屏
+        // 4. 一个纯白 View 铺满全屏
         View white = new View(this);
         white.setBackgroundColor(Color.WHITE);
         setContentView(white);
 
-        // 4. 保持屏幕常亮：不自动熄屏、不自动锁屏
+        // 5. 保持屏幕常亮：不自动熄屏、不自动锁屏
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        // 5. 沉浸式全屏：隐藏系统栏，边缘滑动可临时唤出
+        // 6. 沉浸式全屏：隐藏系统栏，边缘滑动可临时唤出
         hideSystemBars();
     }
 

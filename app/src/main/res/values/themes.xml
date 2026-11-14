@@ -3,8 +3,10 @@
     <style name="Theme.Light" parent="@android:style/Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
         <item name="android:colorBackground">@color/white</item>
-        <item name="android:statusBarColor">@color/white</item>
-        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- 万一 ROM 不跟随隐藏，状态栏露出来时底是白的、图标是深色的 -->
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Android 12+ 的启动画面也保持纯白、不显示图标，点开即纯白 -->
         <item name="android:windowSplashScreenBackground">@color/white</item>
         <item name="android:windowSplashScreenAnimatedIcon">@android:color/transparent</item>
